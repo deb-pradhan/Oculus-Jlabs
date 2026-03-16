@@ -57,14 +57,14 @@ export default function MarketColorMar152026() {
         </CalloutBox>
 
         {/* ── 02 Live Perps & Funding ───────────────────────────────── */}
-        <SectionHeader number="02" title="Live Perps & Funding" sourceTag="Derive MCP" live />
+        <SectionHeader number="02" title="Live Perps & Funding" sourceTag="Hyblock" live />
         <DataTable
           columns={perpTableColumns}
           data={perpTableData}
           ariaLabel="Perpetual futures funding rates and open interest"
         />
         <CalloutBox variant="blue">
-          <strong>Derive signal:</strong> BTC and ETH funding is near-zero — the leverage flush from
+          <strong>Hyblock signal:</strong> BTC and ETH funding is near-zero — the leverage flush from
           last week is complete. SOL and XRP show mild short bias. The outlier is HYPE at -13.1%
           annualised — that level of negative funding with $620M OI is a coiled spring. If spot bids
           show up, the squeeze could add 15-20% in hours.
@@ -155,8 +155,8 @@ export default function MarketColorMar152026() {
           </p>
           <p>
             <em>
-              This report uses live data from Derive protocol via MCP and prediction market pricing
-              from Polymarket. All data as of Mar 15, 2026 18:00 UTC.
+              This report uses options data from Derive protocol, perpetual and order flow data
+              from Hyblock, and prediction market pricing from Polymarket. All data as of Mar 15, 2026 18:00 UTC.
             </em>
           </p>
         </Prose>

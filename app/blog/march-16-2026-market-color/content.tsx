@@ -97,7 +97,7 @@ export default function MarketColorMar162026() {
       </Prose>
 
       {/* ── 03 Live Perps ─────────────────────────────────────────── */}
-      <SectionHeader number="03" title="Live Perpetual Market Snapshot" sourceTag="Derive MCP" live />
+      <SectionHeader number="03" title="Live Perpetual Market Snapshot" sourceTag="Hyblock" live />
       <Prose>
         <p>
           BTC cleared $73k overnight. ETH surged to $2,242, its largest single-day move in
@@ -120,7 +120,7 @@ export default function MarketColorMar162026() {
       </CalloutBox>
 
       {/* ── 04 Spot & OI ──────────────────────────────────────────── */}
-      <SectionHeader number="04" title="Spot Prices & Open Interest" sourceTag="Derive MCP" />
+      <SectionHeader number="04" title="Spot Prices & Open Interest" sourceTag="Hyblock" />
       <StatGrid cells={spotStats} />
       <Prose>
         <p>
@@ -133,7 +133,7 @@ export default function MarketColorMar162026() {
       </Prose>
 
       {/* ── 05 Volume Heat ────────────────────────────────────────── */}
-      <SectionHeader number="05" title="24h Notional Volume — Perp Markets" sourceTag="Derive MCP" />
+      <SectionHeader number="05" title="24h Notional Volume — Perp Markets" sourceTag="Hyblock" />
       <VolumeBar bars={volumeBars} />
       <CalloutBox variant="amber">
         <strong>HYPE leading volume for a third consecutive session — and the funding rate
@@ -213,8 +213,9 @@ export default function MarketColorMar162026() {
         </p>
         <p>
           <em>
-            This report uses live data from Derive protocol via MCP and prediction market
-            pricing from Polymarket. All data as of Mar 16, 2026 morning UTC.
+            This report uses options data from Derive protocol, perpetual and order flow
+            data from Hyblock, and prediction market pricing from Polymarket. All data
+            as of Mar 16, 2026 morning UTC.
           </em>
         </p>
       </Prose>

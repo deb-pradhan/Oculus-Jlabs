@@ -59,6 +59,7 @@ export async function GET(request: NextRequest) {
       const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";
 
       let orderClause: string;
+      const orderParams: unknown[] = [];
       switch (sort) {
         case "views":
           orderClause = "ORDER BY view_count DESC, date DESC";
@@ -68,14 +69,16 @@ export async function GET(request: NextRequest) {
           break;
         default:
           // For search with date sort, use ts_rank as primary sort
-          orderClause = `ORDER BY ts_rank(search_vector, plainto_tsquery('english', $1)) DESC, date DESC`;
+          orderClause = `ORDER BY ts_rank(search_vector, plainto_tsquery('english', $${paramIdx})) DESC, date DESC`;
+          orderParams.push(q);
+          paramIdx++;
           break;
       }
 
       const countQuery = `SELECT COUNT(*) as count FROM posts ${whereClause}`;
       const dataQuery = `SELECT slug, title, description, date, tags, category, thumbnail, reading_time, word_count, view_count, reaction_count FROM posts ${whereClause} ${orderClause} LIMIT $${paramIdx} OFFSET $${paramIdx + 1}`;
 
-      const allParams = [...params, limit, offset];
+      const allParams = [...params, ...orderParams, limit, offset];
 
       const countRes = await db.execute(
         buildParameterizedSql(countQuery, params)

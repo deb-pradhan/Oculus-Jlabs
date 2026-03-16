@@ -1,27 +1,28 @@
 .row {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
   align-items: center;
 }
 
 .pill {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 5px 12px;
+  gap: 6px;
+  padding: 6px 14px;
   border: 1px solid var(--border-element);
-  border-radius: 999px;
+  border-radius: 0;
   background: transparent;
-  color: var(--ink-tertiary);
+  color: var(--ink-secondary);
   font-family: var(--font-geist-mono), monospace;
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
   white-space: nowrap;
   line-height: 1;
+  text-transform: uppercase;
 }
 
 .pill:hover {
@@ -36,6 +37,31 @@
   height: 14px;
 }
 
+/* Platform-specific hover colors */
+.x:hover {
+  border-color: var(--ink-primary);
+  color: var(--ink-primary);
+  background: var(--surface-subtle);
+}
+
+.telegram:hover {
+  border-color: #26A5E4;
+  color: #26A5E4;
+  background: rgba(38, 165, 228, 0.08);
+}
+
+.reddit:hover {
+  border-color: #FF4500;
+  color: #FF4500;
+  background: rgba(255, 69, 0, 0.08);
+}
+
+.linkedin:hover {
+  border-color: #0A66C2;
+  color: #0A66C2;
+  background: rgba(10, 102, 194, 0.08);
+}
+
 .copied {
   border-color: var(--signal-success);
   color: var(--signal-success);
@@ -46,4 +72,12 @@
   border-color: var(--signal-success);
   color: var(--signal-success);
   background: var(--signal-success-subtle);
+}
+
+/* Divider between share buttons and other content */
+.divider {
+  width: 1px;
+  height: 16px;
+  background: var(--border-element);
+  margin: 0 4px;
 }

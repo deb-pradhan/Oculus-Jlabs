@@ -78,7 +78,7 @@ export default function BlogLayout({ meta, children }: BlogLayoutProps) {
           </div>
         )}
 
-        <ShareButtons title={meta.title} slug={meta.slug} />
+        <ShareButtons title={meta.title} slug={meta.slug} description={meta.description} />
       </header>
 
       {/* Two-Column Body */}
@@ -92,8 +92,12 @@ export default function BlogLayout({ meta, children }: BlogLayoutProps) {
         </div>
       </div>
 
-      {/* Footer: Reactions + Related */}
+      {/* Footer: Share + Reactions + Related */}
       <footer className={styles.footer}>
+        <div className={styles.footerShare}>
+          <span className={styles.footerShareLabel}>Share this report</span>
+          <ShareButtons title={meta.title} slug={meta.slug} description={meta.description} />
+        </div>
         <ReactionBar slug={meta.slug} />
         <RelatedPosts currentSlug={meta.slug} tags={meta.tags} />
       </footer>

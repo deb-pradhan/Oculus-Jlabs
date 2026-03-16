@@ -72,21 +72,11 @@ export async function GET(request: NextRequest) {
           break;
       }
 
-      // Count query
-      const countResult = await db.execute<{ count: string }>(
-        sql.raw(`SELECT COUNT(*) as count FROM posts ${whereClause}`)
-      );
-      // Drizzle raw queries need parameterized approach
       const countQuery = `SELECT COUNT(*) as count FROM posts ${whereClause}`;
       const dataQuery = `SELECT slug, title, description, date, tags, category, thumbnail, reading_time, word_count, view_count, reaction_count FROM posts ${whereClause} ${orderClause} LIMIT $${paramIdx} OFFSET $${paramIdx + 1}`;
 
       const allParams = [...params, limit, offset];
 
-      // Use db.execute with sql template for parameterized queries
-      const countSql = sql.raw(countQuery);
-      const dataSql = sql.raw(dataQuery);
-
-      // Build parameterized SQL properly
       const countRes = await db.execute(
         buildParameterizedSql(countQuery, params)
       );

@@ -2,6 +2,8 @@ import { db } from "@/lib/db/client";
 import { posts } from "@/lib/db/schema";
 import { desc } from "drizzle-orm";
 
+export const dynamic = "force-dynamic";
+
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://oculus.jlabs.digital";
 

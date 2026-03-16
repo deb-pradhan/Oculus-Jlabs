@@ -30,20 +30,20 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
-.name {
-  color: var(--ink-primary);
-  font-weight: 600;
+.brandIcon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: contain;
 }
 
-.sep {
-  opacity: 0.4;
-}
-
-.org {
-  color: var(--ink-tertiary);
+.brandWordmark {
+  height: 14px;
+  width: auto;
+  object-fit: contain;
 }
 
 .links {

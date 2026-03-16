@@ -1,18 +1,35 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import { useTheme } from "./ThemeProvider";
 import { ThemeToggle } from "./ThemeToggle";
 import styles from "./Header.module.css";
 
 export function Header() {
+  const { theme } = useTheme();
+
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
         <Link href="/" className={styles.logo}>
-          <span className={styles.logoMark}>&#9678;</span>
-          <span className={styles.logoText}>OCULUS</span>
+          <Image
+            src="/logo-icon.png"
+            alt=""
+            width={28}
+            height={28}
+            className={styles.logoIcon}
+          />
+          <Image
+            src={theme === "dark" ? "/logo-light.png" : "/logo-dark.png"}
+            alt="Jlabs Digital"
+            width={140}
+            height={28}
+            className={styles.logoWordmark}
+            priority
+          />
           <span className={styles.logoDivider} />
-          <span className={styles.logoSub}>JLABS</span>
+          <span className={styles.logoSub}>OCULUS</span>
         </Link>
 
         <div className={styles.actions}>

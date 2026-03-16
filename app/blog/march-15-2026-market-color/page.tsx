@@ -7,7 +7,6 @@ import CalloutBox from '@/components/content/CalloutBox';
 import VolumeBar from '@/components/content/VolumeBar';
 import SectionHeader from '@/components/content/SectionHeader';
 import Prose from '@/components/content/Prose';
-import StatusBar from '@/components/content/StatusBar';
 import { Watchlist, WatchlistItem } from '@/components/content/WatchlistItem';
 
 import meta from './meta';
@@ -20,15 +19,11 @@ import {
   polymarketColumns,
   polymarketData,
   watchlistItems,
-  statusBarItems,
 } from './data';
 
 export default function MarketColorMar152026() {
   return (
-    <>
-      <StatusBar items={statusBarItems} />
-
-      <BlogLayout meta={meta}>
+    <BlogLayout meta={meta}>
         {/* ── 00 The Setup ──────────────────────────────────────────── */}
         <SectionHeader number="00" title="The Setup" />
         <Prose>
@@ -166,6 +161,5 @@ export default function MarketColorMar152026() {
           </p>
         </Prose>
       </BlogLayout>
-    </>
   );
 }

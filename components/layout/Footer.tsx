@@ -1,14 +1,31 @@
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
+import { useTheme } from "./ThemeProvider";
 import styles from "./Footer.module.css";
 
 export function Footer() {
+  const { theme } = useTheme();
+
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
         <div className={styles.brand}>
-          <span className={styles.name}>Oculus</span>
-          <span className={styles.sep}>&middot;</span>
-          <span className={styles.org}>Jlabs Digital</span>
+          <Image
+            src="/logo-icon.png"
+            alt=""
+            width={20}
+            height={20}
+            className={styles.brandIcon}
+          />
+          <Image
+            src={theme === "dark" ? "/logo-light.png" : "/logo-dark.png"}
+            alt="Jlabs Digital"
+            width={100}
+            height={20}
+            className={styles.brandWordmark}
+          />
         </div>
 
         <nav className={styles.links}>

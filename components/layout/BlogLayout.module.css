@@ -1,0 +1,127 @@
+/* ============================================================
+   BlogLayout — Article wrapper with two-column desktop layout
+   ============================================================ */
+
+.article {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 0 64px;
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+
+.header {
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border-element);
+}
+
+.badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.categoryBadge {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-on-accent);
+  background: var(--color-accent-main);
+  border-radius: 4px;
+}
+
+.readingTime {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--ink-secondary);
+  background: var(--surface-subtle);
+  border: 1px solid var(--border-element);
+  border-radius: 4px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--ink-primary);
+  margin-bottom: 12px;
+}
+
+.date {
+  display: block;
+  font-size: 13px;
+  color: var(--ink-tertiary);
+  margin-bottom: 12px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-secondary);
+  background: var(--surface-subtle);
+  border: 1px solid var(--border-element);
+  border-radius: 3px;
+}
+
+/* ── Two-Column Body ──────────────────────────────────────── */
+
+.body {
+  display: flex;
+  gap: 40px;
+}
+
+.sidebar {
+  display: none;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--ink-primary);
+}
+
+/* Desktop: show sidebar */
+@media (min-width: 1024px) {
+  .sidebar {
+    display: block;
+    width: 220px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 80px;
+    align-self: flex-start;
+  }
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+
+.footer {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border-element);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.placeholder {
+  min-height: 48px;
+}

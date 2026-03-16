@@ -1,0 +1,37 @@
+.callout {
+  max-width: 820px;
+  padding: 14px;
+  font-size: 12.5px;
+  line-height: 1.7;
+  border-left: 3px solid var(--ink-primary);
+}
+
+.default {
+  border-left-color: var(--ink-primary);
+  background: var(--surface-subtle);
+  color: var(--ink-secondary);
+}
+
+.red {
+  border-left-color: var(--signal-error);
+  background: var(--signal-error-subtle);
+  color: var(--ink-secondary);
+}
+
+.green {
+  border-left-color: var(--signal-success);
+  background: var(--signal-success-subtle);
+  color: var(--ink-secondary);
+}
+
+.amber {
+  border-left-color: var(--signal-warning);
+  background: var(--signal-warning-subtle);
+  color: var(--ink-secondary);
+}
+
+.blue {
+  border-left-color: var(--color-accent-main);
+  background: var(--color-accent-subtle);
+  color: var(--ink-secondary);
+}

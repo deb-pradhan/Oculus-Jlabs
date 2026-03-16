@@ -1,0 +1,43 @@
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background: var(--ink-primary);
+  padding: 8px 14px;
+  gap: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  border-right: 1px solid var(--ink-tertiary);
+}
+
+.item:last-child {
+  border-right: none;
+}
+
+.item:first-child {
+  padding-left: 0;
+}
+
+.label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-tertiary);
+}
+
+.value {
+  font-size: 12px;
+  font-family: var(--font-geist-mono), "Courier New", monospace;
+  font-weight: 600;
+  color: var(--surface-card);
+}
+
+.highlight {
+  color: var(--signal-warning);
+}

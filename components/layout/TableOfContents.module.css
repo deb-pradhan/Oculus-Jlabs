@@ -1,0 +1,122 @@
+/* ---- Desktop Sidebar ---- */
+.sidebar {
+  display: none;
+  position: sticky;
+  top: 100px;
+  width: 220px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1025px) {
+  .sidebar {
+    display: block;
+  }
+}
+
+.title {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-tertiary);
+  margin-bottom: 12px;
+}
+
+/* ---- Nav list ---- */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.item {
+  border-left: 2px solid transparent;
+}
+
+.item.indent {
+  padding-left: 12px;
+}
+
+.item.active {
+  border-left-color: var(--color-accent-main);
+}
+
+.link {
+  display: block;
+  padding: 4px 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-tertiary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.link:hover {
+  color: var(--ink-primary);
+}
+
+.item.active .link {
+  color: var(--color-accent-main);
+  font-weight: 500;
+}
+
+/* ---- Mobile ---- */
+.mobileWrapper {
+  display: block;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 1025px) {
+  .mobileWrapper {
+    display: none;
+  }
+}
+
+.mobileToggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 16px;
+  border: 1px solid var(--border-element);
+  border-radius: 0px;
+  background: var(--surface-card);
+  color: var(--ink-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.mobileToggle:hover {
+  border-color: var(--color-accent-main);
+}
+
+.chevron {
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.mobileDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  border: 1px solid var(--border-element);
+  border-top: none;
+  background: var(--surface-card);
+  padding: 12px 0;
+  max-height: 300px;
+  overflow-y: auto;
+}

@@ -1,0 +1,89 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface-canvas);
+  border-bottom: 1px solid var(--border-element);
+  backdrop-filter: blur(12px);
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (min-width: 640px) {
+  .inner { padding: 0 32px; }
+}
+
+@media (min-width: 1024px) {
+  .inner { padding: 0 40px; }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--ink-primary);
+}
+
+.logoMark {
+  font-size: 20px;
+  line-height: 1;
+  color: var(--color-accent-main);
+}
+
+.logoText {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.logoDivider {
+  width: 1px;
+  height: 14px;
+  background: var(--border-grid);
+}
+
+.logoSub {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-tertiary);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.searchTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-element);
+  border-radius: 999px;
+  background: var(--surface-card);
+  color: var(--ink-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.searchTrigger:hover {
+  border-color: var(--color-accent-main);
+  color: var(--color-accent-main);
+  background: var(--color-accent-subtle);
+}

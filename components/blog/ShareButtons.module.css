@@ -1,0 +1,45 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--border-element);
+  border-radius: 999px;
+  background: var(--surface-card);
+  color: var(--ink-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.pill:hover {
+  border-color: var(--color-accent-main);
+  color: var(--color-accent-main);
+  background: var(--color-accent-subtle);
+}
+
+.pill svg {
+  flex-shrink: 0;
+}
+
+.copied {
+  border-color: var(--signal-success);
+  color: var(--signal-success);
+  background: var(--signal-success-subtle);
+}
+
+.copied:hover {
+  border-color: var(--signal-success);
+  color: var(--signal-success);
+  background: var(--signal-success-subtle);
+}

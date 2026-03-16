@@ -1,0 +1,46 @@
+.wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+}
+
+.th {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-tertiary);
+  padding: 8px 12px;
+  border-bottom: 2px solid var(--border-strong);
+  background: var(--surface-card);
+}
+
+.td {
+  font-size: 12.5px;
+  font-family: var(--font-geist-mono), "Courier New", monospace;
+  color: var(--ink-primary);
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border-element);
+  background: var(--surface-card);
+}
+
+.row:hover .td {
+  background: var(--surface-subtle);
+}
+
+.sticky {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .sticky {
+    position: static;
+  }
+}

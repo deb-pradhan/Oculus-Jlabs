@@ -1,0 +1,34 @@
+.prose {
+  max-width: 800px;
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--ink-secondary);
+}
+
+.prose p {
+  margin-bottom: 1em;
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+.prose strong {
+  color: var(--ink-primary);
+  font-weight: 600;
+}
+
+.prose em {
+  color: var(--ink-tertiary);
+  font-style: italic;
+}
+
+.prose a {
+  color: var(--color-accent-main);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose a:hover {
+  color: var(--color-accent-hover);
+}

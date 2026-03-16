@@ -1,0 +1,75 @@
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px 60px;
+}
+
+@media (min-width: 640px) {
+  .main { padding: 48px 32px 60px; }
+}
+
+@media (min-width: 1024px) {
+  .main { padding: 48px 40px 60px; }
+}
+
+.searchForm {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.input {
+  flex: 1;
+  padding: 12px 16px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 14px;
+  border: 1px solid var(--border-element);
+  background: var(--surface-card);
+  color: var(--ink-primary);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.input:focus {
+  border-color: var(--color-accent-main);
+}
+
+.input::placeholder {
+  color: var(--ink-tertiary);
+}
+
+.button {
+  padding: 12px 24px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-accent-main);
+  background: var(--color-accent-main);
+  color: var(--ink-on-accent);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.button:hover {
+  background: var(--color-accent-hover);
+}
+
+.resultCount {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12px;
+  color: var(--ink-tertiary);
+  letter-spacing: 0.04em;
+  margin-bottom: 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -1,0 +1,52 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 40px 0;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 13px;
+}
+
+.page,
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 8px;
+  border: 1px solid var(--border-element);
+  background: var(--surface-card);
+  color: var(--ink-secondary);
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.page:hover,
+.arrow:hover {
+  border-color: var(--color-accent-main);
+  color: var(--color-accent-main);
+  background: var(--color-accent-subtle);
+}
+
+.active {
+  background: var(--color-accent-main);
+  color: var(--ink-on-accent);
+  border-color: var(--color-accent-main);
+}
+
+.active:hover {
+  background: var(--color-accent-hover);
+  color: var(--ink-on-accent);
+  border-color: var(--color-accent-hover);
+}
+
+.ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  color: var(--ink-tertiary);
+}

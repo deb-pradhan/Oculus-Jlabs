@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "tsx scripts/sync-posts.ts && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "sync-posts": "tsx scripts/sync-posts.ts",

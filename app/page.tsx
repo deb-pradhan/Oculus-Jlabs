@@ -67,7 +67,6 @@ export default async function HomePage({ searchParams }: HomePageProps) {
     new Date(date).toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
-      year: "numeric",
     });
 
   return (
@@ -76,49 +75,76 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       <main className={styles.main}>
         {/* ── Hero ────────────────────────────────────────────── */}
         <section className={styles.hero}>
-          <div className={styles.heroLabel}>
-            <span className={styles.heroPulse} />
-            Jlabs Digital Research
+          <div className={styles.heroGrid}>
+            <div className={styles.heroContent}>
+              <div className={styles.heroLabel}>
+                <span className={styles.heroPulse} />
+                Live research
+              </div>
+              <h1 className={styles.heroTitle}>
+                Crypto intelligence<br />for serious traders.
+              </h1>
+              <p className={styles.heroSub}>
+                Derivatives, prediction markets, and on-chain signals —
+                synthesized daily by Jlabs Digital.
+              </p>
+            </div>
+            <div className={styles.heroStats}>
+              <div className={styles.heroStat}>
+                <span className={styles.heroStatValue}>{total}</span>
+                <span className={styles.heroStatLabel}>Reports</span>
+              </div>
+              <div className={styles.heroStat}>
+                <span className={styles.heroStatValue}>Daily</span>
+                <span className={styles.heroStatLabel}>Frequency</span>
+              </div>
+              <div className={styles.heroStat}>
+                <span className={styles.heroStatValue}>{BLOG_CATEGORIES.length}</span>
+                <span className={styles.heroStatLabel}>Categories</span>
+              </div>
+            </div>
           </div>
-          <h1 className={styles.heroTitle}>
-            Quantitative crypto intelligence, published daily.
-          </h1>
-          <p className={styles.heroSub}>
-            Derivatives analysis, prediction market signals, and on-chain data
-            — synthesized by AI, verified by quants.
-          </p>
         </section>
 
-        {/* ── Toolbar ────────────────────────────────────────── */}
-        <nav className={styles.toolbar}>
-          <div className={styles.filters}>
-            <Link
-              href="/"
-              className={`${styles.pill} ${!category ? styles.pillActive : ""}`}
-            >
-              All
-            </Link>
-            {BLOG_CATEGORIES.map((cat) => (
-              <Link
-                key={cat}
-                href={`/?category=${cat}`}
-                className={`${styles.pill} ${category === cat ? styles.pillActive : ""}`}
-              >
-                {cat}
-              </Link>
-            ))}
-          </div>
-          <Link href="/search" className={styles.searchLink} aria-label="Search">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <circle cx="7.5" cy="7.5" r="5.5" stroke="currentColor" strokeWidth="1.3" />
-              <path d="M11.5 11.5L16 16" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-            </svg>
+        {/* ── Search ─────────────────────────────────────────── */}
+        <Link href="/search" className={styles.searchBar}>
+          <svg className={styles.searchIcon} width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" strokeWidth="1.2" />
+            <path d="M10 10l4.5 4.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+          </svg>
+          <span className={styles.searchText}>Search reports...</span>
+          <kbd className={styles.searchKbd}>/</kbd>
+        </Link>
+
+        {/* ── Filters ────────────────────────────────────────── */}
+        <nav className={styles.filters}>
+          <Link
+            href="/"
+            className={`${styles.pill} ${!category ? styles.pillActive : ""}`}
+          >
+            All
           </Link>
+          {BLOG_CATEGORIES.map((cat) => (
+            <Link
+              key={cat}
+              href={`/?category=${cat}`}
+              className={`${styles.pill} ${category === cat ? styles.pillActive : ""}`}
+            >
+              {cat}
+            </Link>
+          ))}
         </nav>
 
         {/* ── Featured Post ──────────────────────────────────── */}
         {featured && (
           <Link href={`/blog/${featured.slug}`} className={styles.featured}>
+            <div className={styles.featuredAccent} />
+            <div className={styles.featuredBadge}>
+              <span className={styles.featuredBadgeDot} />
+              Latest report
+            </div>
+            <h2 className={styles.featuredTitle}>{featured.title}</h2>
+            <p className={styles.featuredDesc}>{featured.description}</p>
             <div className={styles.featuredMeta}>
               <span className={styles.featuredCategory}>{featured.category}</span>
               <span className={styles.featuredDot} />
@@ -129,12 +155,8 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                   <span>{featured.readingTime} min read</span>
                 </>
               )}
-            </div>
-            <h2 className={styles.featuredTitle}>{featured.title}</h2>
-            <p className={styles.featuredDesc}>{featured.description}</p>
-            <div className={styles.featuredFooter}>
-              <span className={styles.featuredReadMore}>
-                Read report
+              <span className={styles.featuredArrow}>
+                Read
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -145,41 +167,36 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
         {/* ── Feed ───────────────────────────────────────────── */}
         {feedPosts.length > 0 && (
-          <>
-            {featured && (
-              <div className={styles.feedLabel}>Recent</div>
-            )}
-            <section className={styles.feed}>
-              {feedPosts.map((post, i) => (
-                <Link
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className={styles.post}
-                >
-                  <div className={styles.postInner}>
-                    <span className={styles.postNumber}>
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div className={styles.postContent}>
-                      <div className={styles.postMeta}>
-                        <span className={styles.postCategory}>{post.category}</span>
+          <section className={styles.feed}>
+            {feedPosts.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className={styles.post}
+              >
+                <div className={styles.postContent}>
+                  <div className={styles.postMeta}>
+                    <span className={styles.postCategory}>{post.category}</span>
+                    <span className={styles.postDot} />
+                    <span>{formatDate(post.date)}</span>
+                    {post.readingTime && (
+                      <>
                         <span className={styles.postDot} />
-                        <span>{formatDate(post.date)}</span>
-                        {post.readingTime && (
-                          <>
-                            <span className={styles.postDot} />
-                            <span>{post.readingTime}m</span>
-                          </>
-                        )}
-                      </div>
-                      <h3 className={styles.postTitle}>{post.title}</h3>
-                      <p className={styles.postDesc}>{post.description}</p>
-                    </div>
+                        <span>{post.readingTime}m</span>
+                      </>
+                    )}
                   </div>
-                </Link>
-              ))}
-            </section>
-          </>
+                  <h3 className={styles.postTitle}>{post.title}</h3>
+                  <p className={styles.postDesc}>{post.description}</p>
+                </div>
+                <span className={styles.postArrow}>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M4 8h8M9 5l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </Link>
+            ))}
+          </section>
         )}
 
         {blogPosts.length === 0 && (

@@ -50,6 +50,19 @@ npm run dev
 - [ ] Search bar links to `/search` and search works
 - [ ] Category filter pills work on homepage
 
+### Images & Media
+
+- [ ] Price ticker loads live crypto prices (BTC, ETH, SOL, XRP, BNB)
+- [ ] Price ticker shows green/red 24h change percentages
+- [ ] Hero featured image loads from Pexels with accent-tinted monochrome filter
+- [ ] Each blog post in the feed has a **unique** thumbnail (no duplicates)
+- [ ] Feed thumbnails load correctly with accent color overlay + grain
+- [ ] Images have alt text (check with browser dev tools)
+- [ ] No broken image placeholders (gray boxes without content)
+- [ ] Pexels photographer attribution appears on image hover
+- [ ] `PEXELS_API_KEY` is set in `.env.local` and Railway environment
+- [ ] `/api/pexels?category=macro` returns valid JSON with photos array
+
 ---
 
 ## 4. Share & Social

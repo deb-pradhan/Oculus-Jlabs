@@ -4,6 +4,9 @@ import { desc, eq, sql } from "drizzle-orm";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Pagination } from "@/components/blog/Pagination";
+import PriceTicker from "@/components/home/PriceTicker";
+import PexelsImage from "@/components/home/PexelsImage";
+import { fetchPostImages } from "@/lib/pexels";
 import type { PostWithCounts, BlogCategory } from "@/lib/types";
 import { BLOG_CATEGORIES } from "@/lib/types";
 import Link from "next/link";
@@ -60,8 +63,15 @@ export default async function HomePage({ searchParams }: HomePageProps) {
   const searchParamsObj: Record<string, string> = {};
   if (category) searchParamsObj.category = category;
 
+  // Split posts for newspaper layout
   const featured = page === 1 && !category ? blogPosts[0] : null;
-  const feedPosts = featured ? blogPosts.slice(1) : blogPosts;
+  const heroHeadlines = page === 1 && !category ? blogPosts.slice(1, 5) : [];
+  const feedPosts = page === 1 && !category ? blogPosts.slice(5) : (featured ? blogPosts.slice(1) : blogPosts);
+
+  // Fetch unique Pexels images for each post
+  const pexelsImages = await fetchPostImages(
+    blogPosts.map((p) => ({ slug: p.slug, category: p.category }))
+  );
 
   const formatDate = (date: string) =>
     new Date(date).toLocaleDateString("en-US", {
@@ -72,39 +82,59 @@ export default async function HomePage({ searchParams }: HomePageProps) {
   return (
     <>
       <Header />
+      <PriceTicker />
       <main className={styles.main}>
-        {/* ── Hero ────────────────────────────────────────────── */}
-        <section className={styles.hero}>
-          <div className={styles.heroGrid}>
-            <div className={styles.heroContent}>
-              <div className={styles.heroLabel}>
-                <span className={styles.heroPulse} />
-                Live research
+        {/* ── Hero 2-Column ─────────────────────────────────────── */}
+        {featured && (
+          <section className={styles.hero}>
+            <div className={styles.heroGrid}>
+              {/* Left — Featured Post */}
+              <div className={styles.heroLeft}>
+                <Link href={`/blog/${featured.slug}`} className={styles.heroLink}>
+                  {pexelsImages.get(featured.slug) && (
+                    <div className={styles.heroImageWrap}>
+                      <PexelsImage
+                        src={pexelsImages.get(featured.slug)!.src.landscape}
+                        alt={pexelsImages.get(featured.slug)!.alt || featured.title}
+                        photographer={pexelsImages.get(featured.slug)!.photographer}
+                        priority
+                      />
+                    </div>
+                  )}
+                  <span className={styles.heroCategory}>{featured.category}</span>
+                  <h1 className={styles.heroTitle}>{featured.title}</h1>
+                  <p className={styles.heroDesc}>{featured.description}</p>
+                  <div className={styles.heroMeta}>
+                    <span>{formatDate(featured.date)}</span>
+                    {featured.readingTime && (
+                      <>
+                        <span className={styles.heroDot} />
+                        <span>{featured.readingTime} min read</span>
+                      </>
+                    )}
+                  </div>
+                </Link>
               </div>
-              <h1 className={styles.heroTitle}>
-                Crypto intelligence<br />for serious traders.
-              </h1>
-              <p className={styles.heroSub}>
-                Derivatives, prediction markets, and on-chain signals —
-                synthesized daily by Jlabs Digital.
-              </p>
+
+              {/* Right — Headline Stack */}
+              <div className={styles.heroRight}>
+                {heroHeadlines.map((post) => (
+                  <Link
+                    key={post.slug}
+                    href={`/blog/${post.slug}`}
+                    className={styles.headline}
+                  >
+                    <div className={styles.headlineCategory}>
+                      {post.category}
+                      <span className={styles.headlineDate}> · {formatDate(post.date)}</span>
+                    </div>
+                    <h2 className={styles.headlineTitle}>{post.title}</h2>
+                  </Link>
+                ))}
+              </div>
             </div>
-            <div className={styles.heroStats}>
-              <div className={styles.heroStat}>
-                <span className={styles.heroStatValue}>{total}</span>
-                <span className={styles.heroStatLabel}>Reports</span>
-              </div>
-              <div className={styles.heroStat}>
-                <span className={styles.heroStatValue}>Daily</span>
-                <span className={styles.heroStatLabel}>Frequency</span>
-              </div>
-              <div className={styles.heroStat}>
-                <span className={styles.heroStatValue}>{BLOG_CATEGORIES.length}</span>
-                <span className={styles.heroStatLabel}>Categories</span>
-              </div>
-            </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* ── Search ─────────────────────────────────────────── */}
         <Link href="/search" className={styles.searchBar}>
@@ -135,67 +165,44 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           ))}
         </nav>
 
-        {/* ── Featured Post ──────────────────────────────────── */}
-        {featured && (
-          <Link href={`/blog/${featured.slug}`} className={styles.featured}>
-            <div className={styles.featuredAccent} />
-            <div className={styles.featuredBadge}>
-              <span className={styles.featuredBadgeDot} />
-              Latest report
-            </div>
-            <h2 className={styles.featuredTitle}>{featured.title}</h2>
-            <p className={styles.featuredDesc}>{featured.description}</p>
-            <div className={styles.featuredMeta}>
-              <span className={styles.featuredCategory}>{featured.category}</span>
-              <span className={styles.featuredDot} />
-              <span>{formatDate(featured.date)}</span>
-              {featured.readingTime && (
-                <>
-                  <span className={styles.featuredDot} />
-                  <span>{featured.readingTime} min read</span>
-                </>
-              )}
-              <span className={styles.featuredArrow}>
-                Read
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </span>
-            </div>
-          </Link>
-        )}
-
         {/* ── Feed ───────────────────────────────────────────── */}
         {feedPosts.length > 0 && (
           <section className={styles.feed}>
-            {feedPosts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className={styles.post}
-              >
-                <div className={styles.postContent}>
-                  <div className={styles.postMeta}>
-                    <span className={styles.postCategory}>{post.category}</span>
-                    <span className={styles.postDot} />
-                    <span>{formatDate(post.date)}</span>
-                    {post.readingTime && (
-                      <>
-                        <span className={styles.postDot} />
-                        <span>{post.readingTime}m</span>
-                      </>
-                    )}
+            {feedPosts.map((post) => {
+              const photo = pexelsImages.get(post.slug);
+              return (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className={styles.post}
+                >
+                  <div className={styles.postContent}>
+                    <div className={styles.postMeta}>
+                      <span className={styles.postCategory}>{post.category}</span>
+                      <span className={styles.postDot} />
+                      <span>{formatDate(post.date)}</span>
+                      {post.readingTime && (
+                        <>
+                          <span className={styles.postDot} />
+                          <span>{post.readingTime}m</span>
+                        </>
+                      )}
+                    </div>
+                    <h3 className={styles.postTitle}>{post.title}</h3>
+                    <p className={styles.postDesc}>{post.description}</p>
                   </div>
-                  <h3 className={styles.postTitle}>{post.title}</h3>
-                  <p className={styles.postDesc}>{post.description}</p>
-                </div>
-                <span className={styles.postArrow}>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M4 8h8M9 5l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
-              </Link>
-            ))}
+                  {photo && (
+                    <div className={styles.postThumb}>
+                      <PexelsImage
+                        src={photo.src.tiny}
+                        alt={photo.alt || post.title}
+                        photographer={photo.photographer}
+                      />
+                    </div>
+                  )}
+                </Link>
+              );
+            })}
           </section>
         )}
 

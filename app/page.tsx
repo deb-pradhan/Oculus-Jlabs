@@ -60,55 +60,38 @@ export default async function HomePage({ searchParams }: HomePageProps) {
   const searchParamsObj: Record<string, string> = {};
   if (category) searchParamsObj.category = category;
 
+  const featured = page === 1 && !category ? blogPosts[0] : null;
+  const feedPosts = featured ? blogPosts.slice(1) : blogPosts;
+
+  const formatDate = (date: string) =>
+    new Date(date).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+
   return (
     <>
       <Header />
       <main className={styles.main}>
         {/* ── Hero ────────────────────────────────────────────── */}
         <section className={styles.hero}>
-          <div className={styles.heroAccent} />
-          <div className={styles.heroContent}>
-            <div className={styles.heroLabel}>
-              <span className={styles.heroPulse} />
-              Jlabs Digital Research
-            </div>
-            <h1 className={styles.heroTitle}>
-              <span className={styles.heroTitleAccent}>Oculus</span>
-            </h1>
-            <p className={styles.heroSub}>
-              Quantitative crypto market research, derivatives analysis, and
-              on-chain intelligence — generated daily by AI, verified by quants.
-            </p>
-            <div className={styles.heroMeta}>
-              <div className={styles.heroStat}>
-                <span className={styles.heroStatValue}>{total}</span>
-                <span className={styles.heroStatLabel}>Reports</span>
-              </div>
-              <div className={styles.heroStatDivider} />
-              <div className={styles.heroStat}>
-                <span className={styles.heroStatValue}>Daily</span>
-                <span className={styles.heroStatLabel}>Frequency</span>
-              </div>
-              <div className={styles.heroStatDivider} />
-              <div className={styles.heroStat}>
-                <span className={styles.heroStatValue}>{BLOG_CATEGORIES.length}</span>
-                <span className={styles.heroStatLabel}>Categories</span>
-              </div>
-            </div>
+          <div className={styles.heroLabel}>
+            <span className={styles.heroPulse} />
+            Jlabs Digital Research
           </div>
+          <h1 className={styles.heroTitle}>
+            Quantitative crypto intelligence, published daily.
+          </h1>
+          <p className={styles.heroSub}>
+            Derivatives analysis, prediction market signals, and on-chain data
+            — synthesized by AI, verified by quants.
+          </p>
         </section>
 
-        {/* ── Search + Filters ────────────────────────────────── */}
-        <section className={styles.toolbar}>
-          <Link href="/search" className={styles.searchBar}>
-            <svg className={styles.searchIcon} width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" strokeWidth="1.2" />
-              <path d="M10 10l4.5 4.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-            </svg>
-            <span className={styles.searchText}>Search reports...</span>
-            <span className={styles.searchShortcut}>/</span>
-          </Link>
-          <nav className={styles.filters}>
+        {/* ── Toolbar ────────────────────────────────────────── */}
+        <nav className={styles.toolbar}>
+          <div className={styles.filters}>
             <Link
               href="/"
               className={`${styles.pill} ${!category ? styles.pillActive : ""}`}
@@ -124,71 +107,91 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                 {cat}
               </Link>
             ))}
-          </nav>
-        </section>
+          </div>
+          <Link href="/search" className={styles.searchLink} aria-label="Search">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <circle cx="7.5" cy="7.5" r="5.5" stroke="currentColor" strokeWidth="1.3" />
+              <path d="M11.5 11.5L16 16" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+            </svg>
+          </Link>
+        </nav>
 
-        {/* ── Post Feed ───────────────────────────────────────── */}
-        <section className={styles.feed}>
-          {blogPosts.length > 0 ? (
-            blogPosts.map((post, i) => {
-              const isLatest = i === 0 && page === 1 && !category;
-              return (
+        {/* ── Featured Post ──────────────────────────────────── */}
+        {featured && (
+          <Link href={`/blog/${featured.slug}`} className={styles.featured}>
+            <div className={styles.featuredMeta}>
+              <span className={styles.featuredCategory}>{featured.category}</span>
+              <span className={styles.featuredDot} />
+              <span>{formatDate(featured.date)}</span>
+              {featured.readingTime && (
+                <>
+                  <span className={styles.featuredDot} />
+                  <span>{featured.readingTime} min read</span>
+                </>
+              )}
+            </div>
+            <h2 className={styles.featuredTitle}>{featured.title}</h2>
+            <p className={styles.featuredDesc}>{featured.description}</p>
+            <div className={styles.featuredFooter}>
+              <span className={styles.featuredReadMore}>
+                Read report
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            </div>
+          </Link>
+        )}
+
+        {/* ── Feed ───────────────────────────────────────────── */}
+        {feedPosts.length > 0 && (
+          <>
+            {featured && (
+              <div className={styles.feedLabel}>Recent</div>
+            )}
+            <section className={styles.feed}>
+              {feedPosts.map((post, i) => (
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className={`${styles.post} ${isLatest ? styles.postLatest : ""}`}
+                  className={styles.post}
                 >
-                  {isLatest && (
-                    <div className={styles.postBadge}>
-                      <span className={styles.postBadgeDot} />
-                      Latest
-                    </div>
-                  )}
-                  <div className={styles.postHead}>
-                    <span className={styles.postCategory}>{post.category}</span>
-                    <span className={styles.postDate}>
-                      {new Date(post.date).toLocaleDateString("en-US", {
-                        weekday: "short",
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                      })}
+                  <div className={styles.postInner}>
+                    <span className={styles.postNumber}>
+                      {String(i + 1).padStart(2, "0")}
                     </span>
-                    {post.readingTime && (
-                      <span className={styles.postTime}>
-                        {post.readingTime}m read
-                      </span>
-                    )}
-                  </div>
-                  <h2 className={styles.postTitle}>{post.title}</h2>
-                  <p className={styles.postDesc}>{post.description}</p>
-                  <div className={styles.postFoot}>
-                    <div className={styles.postTags}>
-                      {post.tags.slice(0, isLatest ? 8 : 4).map((tag) => (
-                        <span key={tag} className={styles.postTag}>{tag}</span>
-                      ))}
+                    <div className={styles.postContent}>
+                      <div className={styles.postMeta}>
+                        <span className={styles.postCategory}>{post.category}</span>
+                        <span className={styles.postDot} />
+                        <span>{formatDate(post.date)}</span>
+                        {post.readingTime && (
+                          <>
+                            <span className={styles.postDot} />
+                            <span>{post.readingTime}m</span>
+                          </>
+                        )}
+                      </div>
+                      <h3 className={styles.postTitle}>{post.title}</h3>
+                      <p className={styles.postDesc}>{post.description}</p>
                     </div>
-                    <span className={styles.postArrow}>
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </span>
                   </div>
                 </Link>
-              );
-            })
-          ) : (
-            <div className={styles.empty}>
-              <div className={styles.emptyIcon}>&#9678;</div>
-              <p className={styles.emptyTitle}>No reports found</p>
-              <p className={styles.emptySub}>
-                {category
-                  ? `No reports in "${category}" yet. Try another category.`
-                  : "Research reports are published daily. Check back soon."}
-              </p>
-            </div>
-          )}
-        </section>
+              ))}
+            </section>
+          </>
+        )}
+
+        {blogPosts.length === 0 && (
+          <div className={styles.empty}>
+            <p className={styles.emptyTitle}>No reports found</p>
+            <p className={styles.emptySub}>
+              {category
+                ? `No reports in "${category}" yet. Try another category.`
+                : "Research reports are published daily. Check back soon."}
+            </p>
+          </div>
+        )}
 
         <Pagination
           currentPage={page}

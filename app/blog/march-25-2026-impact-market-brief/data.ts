@@ -3,9 +3,9 @@
 // ── Hero / Ticker stats ─────────────────────────────────────────────────
 export const heroStats = [
   { label: 'BTC Price', value: '~$87K', sub: 'Fractal entry zone', direction: 'dn' as const },
-  { label: 'Crowd Consensus', value: '$70\u201372K', sub: 'Polymarket modal', direction: 'dn' as const },
+  { label: 'Crowd Consensus', value: '$70-72K', sub: 'Polymarket modal', direction: 'dn' as const },
   { label: 'Fractal Target', value: '$53.3K', sub: 'Green line dominant path', direction: 'dn' as const },
-  { label: 'BAR (20 exchanges)', value: '\u22120.018', sub: 'Bid ask ratio negative', direction: 'dn' as const },
+  { label: 'BAR (20 exchanges)', value: '-0.018', sub: 'Bid ask ratio negative', direction: 'dn' as const },
 ];
 
 // ── Signals ──────────────────────────────────────────────────────────────
@@ -13,7 +13,7 @@ export const signals: { text: string; type: 'bull' | 'bear' | 'neutral' }[] = [
   { text: 'Fractal: 7 matches converge', type: 'bear' },
   { text: 'BAR negative across 20 exchanges', type: 'bear' },
   { text: 'Macro: Risk off stagflation', type: 'bear' },
-  { text: 'Polymarket: 57.5% at $70\u201372K', type: 'neutral' },
+  { text: 'Polymarket: 57.5% at $70-72K', type: 'neutral' },
   { text: 'Crowd confirms direction', type: 'neutral' },
   { text: 'Bull invalidation: weekly close >$90K', type: 'bull' },
 ];
@@ -22,35 +22,35 @@ export const signals: { text: string; type: 'bull' | 'bear' | 'neutral' }[] = [
 export const bookGrid = [
   { label: 'Current Price', value: '~$87K', sub: 'Fractal entry zone', direction: 'dn' as const },
   { label: 'Weighted Avg Forecast', value: '$72.2K', sub: 'Multi match average', direction: 'dn' as const },
-  { label: 'Best Match Target', value: '$53.3K', sub: 'Green line \u2014 dominant path', direction: 'dn' as const },
+  { label: 'Best Match Target', value: '$53.3K', sub: 'Green line — dominant path', direction: 'dn' as const },
 ];
 
 // ── Fractal signal paths ────────────────────────────────────────────────
 export const fractalPaths = [
   {
-    label: 'Green Line \u2014 Best Match Path',
+    label: 'Green Line — Best Match Path',
     price: '$53.3K',
     type: 'bear' as const,
     description:
-      'Dominant historical analog. Lowest probability in the short term \u2014 highest conviction over 60 days. Prepare for this path.',
+      'Dominant historical analog. Lowest probability in the short term — highest conviction over 60 days. Prepare for this path.',
   },
   {
-    label: 'Gold Dashed \u2014 Weighted Average',
+    label: 'Gold Dashed — Weighted Average',
     price: '$72.2K',
     type: 'neutral' as const,
     description:
-      'Average of all 7 matches. Represents the crowd median of historical outcomes \u2014 right in the Polymarket consensus zone.',
+      'Average of all 7 matches. Represents the crowd median of historical outcomes — right in the Polymarket consensus zone.',
   },
 ];
 
 // ── Polymarket probability bars (Today, Mar 25) ─────────────────────────
 export const pmToday = [
   { label: '< $66K', pct: 1.5, tier: 'tiny' as const },
-  { label: '$66\u201368K', pct: 1.1, tier: 'tiny' as const },
-  { label: '$68\u201370K', pct: 16.0, tier: 'mid' as const },
-  { label: '$70\u201372K', pct: 57.5, tier: 'peak' as const, star: true },
-  { label: '$72\u201374K', pct: 20.5, tier: 'high' as const },
-  { label: '$74\u201376K', pct: 2.4, tier: 'low' as const },
+  { label: '$66-68K', pct: 1.1, tier: 'tiny' as const },
+  { label: '$68-70K', pct: 16.0, tier: 'mid' as const },
+  { label: '$70-72K', pct: 57.5, tier: 'peak' as const, star: true },
+  { label: '$72-74K', pct: 20.5, tier: 'high' as const },
+  { label: '$74-76K', pct: 2.4, tier: 'low' as const },
   { label: '> $76K', pct: 0.7, tier: 'tiny' as const },
 ];
 
@@ -69,26 +69,26 @@ export const scenarios = [
   {
     id: 'A',
     title: 'Fractal Resolves Lower (Base Case)',
-    body: 'BTC begins to lose momentum from the $87K level. If price fails to reclaim $88K+ on volume by Thursday, the weighted average path to $72K becomes the dominant near term narrative \u2014 validating both the Polymarket crowd and setting up the second leg toward $65.5K then $53.3K. Watch $80K as the first confirmation level.',
+    body: 'BTC begins to lose momentum from the $87K level. If price fails to reclaim $88K+ on volume by Thursday, the weighted average path to $72K becomes the dominant near term narrative — validating both the Polymarket crowd and setting up the second leg toward $65.5K then $53.3K. Watch $80K as the first confirmation level.',
   },
   {
     id: 'B',
     title: 'Crowd is Right, Fractal Delays (Alternative)',
-    body: 'BTC consolidates in the $70\u201374K zone this week, crowd confirms. The fractal\u2019s 60 day resolution clock starts ticking from a lower base. The green line path is delayed but not invalidated \u2014 the setup just reprices from a lower entry. Watch $74K close as the scenario B trigger.',
+    body: "BTC consolidates in the $70-74K zone this week, crowd confirms. The fractal's 60 day resolution clock starts ticking from a lower base. The green line path is delayed but not invalidated — the setup just reprices from a lower entry. Watch $74K close as the scenario B trigger.",
   },
   {
     id: 'C',
     title: 'Fractal Invalidated (Bull Case, Low Probability)',
-    body: 'A sustained weekly close above $90K on high volume with positive BAR would suggest the historical analog is breaking down and a new ATH run is possible. At that point, the crowd\u2019s view is overly bearish and needs to reprice upward. Probability given current BAR readings: ~12%.',
+    body: "A sustained weekly close above $90K on high volume with positive BAR would suggest the historical analog is breaking down and a new ATH run is possible. At that point, the crowd's view is overly bearish and needs to reprice upward. Probability given current BAR readings: ~12%.",
   },
 ];
 
 // ── Position ─────────────────────────────────────────────────────────────
 export const position = {
-  lean: 'Bearish \u2014 60 Day Horizon',
+  lean: 'Bearish — 60 Day Horizon',
   conviction: 'Half Book Conviction',
   thesis:
-    'The fractal\u2019s best historical match \u2014 7 distinct pattern alignments against Aug to Dec 2025 price structure \u2014 resolves to $53.3K. The global bid ask ratio is negative. The macro regime is Risk Off Stagflation. The Polymarket crowd confirms the near term directional move to $70\u201372K, which sets the entry point for the second leg. The path is written. Prepare for it.',
+    "The fractal's best historical match — 7 distinct pattern alignments against Aug to Dec 2025 price structure — resolves to $53.3K. The global bid ask ratio is negative. The macro regime is Risk Off Stagflation. The Polymarket crowd confirms the near term directional move to $70-72K, which sets the entry point for the second leg. The path is written. Prepare for it.",
   killCondition:
     'A weekly close above $90K with positive BAR across 20 exchanges and stablecoin liquidity influx. That would invalidate the historical analog entirely and force a full position reassessment.',
 };
@@ -97,7 +97,7 @@ export const position = {
 export const methodLayers = [
   {
     title: 'Layer 1: Crowd Intelligence',
-    body: 'Polymarket prediction markets aggregate real money bets from thousands of participants into a probability distribution. Unlike analyst forecasts, these are skin in the game signals \u2014 someone\u2019s dollar is on the line for every price they quote. We extract the modal price expectation, the distribution skew, and the 24hr volume as a conviction signal. High confidence crowd distributions with tight spread = high quality signal.',
+    body: "Polymarket prediction markets aggregate real money bets from thousands of participants into a probability distribution. Unlike analyst forecasts, these are skin in the game signals — someone's dollar is on the line for every price they quote. We extract the modal price expectation, the distribution skew, and the 24hr volume as a conviction signal. High confidence crowd distributions with tight spread = high quality signal.",
   },
   {
     title: 'Layer 2: Orderflow Intelligence',
@@ -106,7 +106,7 @@ export const methodLayers = [
 ];
 
 // ── Chart data: Polymarket probability distribution (horizontal bar) ────
-export const pmChartLabels = ['< $66K', '$66\u201368K', '$68\u201370K', '$70\u201372K', '$72\u201374K', '$74\u201376K', '> $76K'];
+export const pmChartLabels = ['< $66K', '$66-68K', '$68-70K', '$70-72K', '$72-74K', '$74-76K', '> $76K'];
 export const pmChartValues = [1.5, 1.1, 16.0, 57.5, 20.5, 2.4, 0.7];
 
 // ── Chart data: Cumulative upside probabilities ─────────────────────────

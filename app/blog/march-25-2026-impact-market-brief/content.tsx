@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import Image from 'next/image';
 import BlogLayout from '@/components/layout/BlogLayout';
 import StatGrid from '@/components/content/StatGrid';
 import CalloutBox from '@/components/content/CalloutBox';
@@ -220,7 +221,7 @@ function ScenarioBlock({ scenario }: { scenario: typeof scenarios[0] }) {
           fontFamily: 'var(--font-geist-mono, monospace)',
         }}
       >
-        Scenario {scenario.id} \u2014 {scenario.title}
+        Scenario {scenario.id} — {scenario.title}
       </div>
       <div style={{ fontSize: 13, color: 'var(--ink-secondary, #999)', lineHeight: 1.6 }}>
         {scenario.body}
@@ -293,7 +294,7 @@ export default function ImpactMarketBriefMar252026() {
               legend: { display: false },
               title: {
                 display: true,
-                text: 'Polymarket \u2014 BTC Price Range Today (Mar 25)',
+                text: 'Polymarket — BTC Price Range Today (Mar 25)',
                 color: '#e8e6e0',
                 font: { size: 12, family: 'var(--font-geist-mono, monospace)' },
                 padding: { bottom: 12 },
@@ -347,7 +348,7 @@ export default function ImpactMarketBriefMar252026() {
               legend: { display: false },
               title: {
                 display: true,
-                text: 'Friday Mar 28 \u2014 Cumulative Upside Probabilities',
+                text: 'Friday Mar 28 — Cumulative Upside Probabilities',
                 color: '#e8e6e0',
                 font: { size: 12, family: 'var(--font-geist-mono, monospace)' },
                 padding: { bottom: 12 },
@@ -411,7 +412,7 @@ export default function ImpactMarketBriefMar252026() {
       </Prose>
 
       {/* ── Section 2: BTC — The Book ──────────────────────────────────────── */}
-      <SectionHeader number="02" title="BTC \u2014 The Book" sourceTag="Fractal + Orderflow" />
+      <SectionHeader number="02" title="BTC — The Book" sourceTag="Fractal + Orderflow" />
       <Prose>
         <p>
           BTC currently trades near <strong>$87K</strong> — squarely inside what the fractal model identifies as
@@ -441,6 +442,19 @@ export default function ImpactMarketBriefMar252026() {
           Best match: Aug 2025 to Dec 25, 2025 · 7 distinct matches
         </div>
       </CalloutBox>
+      <div style={{ margin: '24px 0', borderRadius: 8, overflow: 'hidden', border: '1px solid var(--border, rgba(0,0,0,0.08))' }}>
+        <Image
+          src="/images/btc_fractal_120d_optimised.png"
+          alt="BTC USDT Fractal Model 120d Lookback Grid Optimised Price + Global Bid Ask DTW Mar 23 2026"
+          width={2127}
+          height={1747}
+          style={{ width: '100%', height: 'auto', display: 'block' }}
+          priority
+        />
+        <div style={{ padding: '10px 14px', background: 'var(--surface-secondary, rgba(0,0,0,0.03))', fontSize: 11, color: 'var(--ink-secondary, #888)', lineHeight: 1.5 }}>
+          Source: Hyblock MCP. 1000 real days, Lookback=120d, Forecast=60d, W_BAR=1.5, step=6. Best match: Aug 2025 to Dec 25 2025. 7 distinct matches. Green line = best match forecast ($53.3K). Gold dashed = weighted average ($72.2K). Red dashed = 20th to 80th percentile bounds.
+        </div>
+      </div>
       <Prose>
         <p>
           The fractal model finds the <strong>best historical match in the Aug to Dec 2025 period</strong> —
@@ -455,7 +469,7 @@ export default function ImpactMarketBriefMar252026() {
       </div>
       <Prose>
         <p>
-          <strong>This is what makes the signal compelling:</strong> the Polymarket crowd&apos;s $70\u201372K forecast
+          <strong>This is what makes the signal compelling:</strong> the Polymarket crowd&apos;s $70-72K forecast
           for this week accidentally maps to the fractal&apos;s weighted average. The crowd is right about the near
           term destination — but wrong about it being the floor. The green line is the outlier that statistics
           say you should position for.
@@ -463,7 +477,7 @@ export default function ImpactMarketBriefMar252026() {
       </Prose>
 
       {/* ── Section 4: Crowd Intelligence — Polymarket ─────────────────────── */}
-      <SectionHeader number="04" title="Crowd Intelligence \u2014 Polymarket" sourceTag="Polymarket" live />
+      <SectionHeader number="04" title="Crowd Intelligence — Polymarket" sourceTag="Polymarket" live />
       <Prose>
         <p>
           Polymarket prediction markets are the cleanest real money signal for short term crowd consensus.
@@ -523,7 +537,7 @@ export default function ImpactMarketBriefMar252026() {
       <Prose>
         <p>
           Read this clearly: the crowd has essentially zero conviction in BTC sustaining above $76K by Friday.
-          They are pricing a mean reversion to $70\u201372K with <strong>57.5% certainty today</strong>.
+          They are pricing a mean reversion to $70-72K with <strong>57.5% certainty today</strong>.
           The fractal says they are right about the direction — but their 60 day target is 20% above where
           history says this ends.
         </p>
@@ -566,7 +580,7 @@ export default function ImpactMarketBriefMar252026() {
       </div>
       <Prose>
         <p>
-          <strong>Today&apos;s signal structure is textbook Impact:</strong> the Polymarket crowd ($70\u201372K) is
+          <strong>Today&apos;s signal structure is textbook Impact:</strong> the Polymarket crowd ($70-72K) is
           looking at the near term landing zone but has not priced the full fractal resolution ($53.3K). That gap
           between crowd consensus and structural path is where the opportunity lives. Execution is calibrated to
           the fractal target with the crowd data confirming the short term directional move before the real leg
@@ -575,7 +589,7 @@ export default function ImpactMarketBriefMar252026() {
       </Prose>
 
       {/* ── Section 6: Scenario Tree ───────────────────────────────────────── */}
-      <SectionHeader number="06" title="Next 48 Hours \u2014 Scenario Tree" sourceTag="Scenarios" />
+      <SectionHeader number="06" title="Next 48 Hours — Scenario Tree" sourceTag="Scenarios" />
       {scenarios.map((s, i) => (
         <ScenarioBlock key={i} scenario={s} />
       ))}

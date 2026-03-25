@@ -24,7 +24,6 @@ export function ShareButtons({ title, slug, description }: ShareButtonsProps) {
 
   const shareX = () => {
     const url = buildUrl("twitter");
-    // X has a 280 char limit; reserve space for the URL (~30 chars via t.co)
     const maxTextLen = 280 - 30;
     const text = shareText.length > maxTextLen ? shareText.slice(0, maxTextLen - 1) + "\u2026" : shareText;
     window.open(
@@ -68,7 +67,6 @@ export function ShareButtons({ title, slug, description }: ShareButtonsProps) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // fallback
       const input = document.createElement("input");
       input.value = url;
       document.body.appendChild(input);
@@ -79,34 +77,6 @@ export function ShareButtons({ title, slug, description }: ShareButtonsProps) {
       setTimeout(() => setCopied(false), 2000);
     }
   };
-
-  const handleNativeShare = async () => {
-    const url = buildUrl("native");
-    try {
-      await navigator.share({ title, url });
-    } catch {
-      // user cancelled or unsupported
-    }
-  };
-
-  const canNativeShare = typeof navigator !== "undefined" && !!navigator.share;
-
-  if (canNativeShare) {
-    return (
-      <div className={styles.row}>
-        <button
-          className={styles.pill}
-          onClick={handleNativeShare}
-          aria-label="Share this post"
-        >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M4 10a2 2 0 1 1 0-4 2 2 0 0 1 0 4ZM12 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4ZM12 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4ZM5.7 7.4l4.6-2.8M5.7 8.6l4.6 2.8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-          </svg>
-          Share
-        </button>
-      </div>
-    );
-  }
 
   return (
     <div className={styles.row}>

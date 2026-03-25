@@ -161,6 +161,12 @@ export default function GoogleAlgorithmMar252026() {
       const { Chart, registerables } = await import('chart.js');
       Chart.register(...registerables);
 
+      // Destroy any existing chart instances (React Strict Mode double-mount)
+      ['kvMemChart', 'latencyBenchChart', 'spotPriceChart', 'costReductionChart'].forEach((id) => {
+        const existing = Chart.getChart(id);
+        if (existing) existing.destroy();
+      });
+
       const isDark = typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches;
       const gridColor = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.05)';
       Chart.defaults.color = SOFT;

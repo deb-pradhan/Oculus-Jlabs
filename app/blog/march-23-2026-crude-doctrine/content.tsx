@@ -480,6 +480,13 @@ export default function CrudeDoctrineMar232026() {
       const { Chart, registerables } = await import('chart.js');
       Chart.register(...registerables);
 
+      // Destroy any existing chart instances (React Strict Mode double-mount)
+      const canvasIds = ['cascadeChart', 'supplyChart', 'bufferChart', 'origProb', 'revProb', 'assetChart'];
+      canvasIds.forEach((id) => {
+        const existing = Chart.getChart(id);
+        if (existing) existing.destroy();
+      });
+
       const isDark =
         typeof window !== 'undefined' &&
         window.matchMedia('(prefers-color-scheme: dark)').matches;

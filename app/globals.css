@@ -6,39 +6,39 @@
 /* --- THEME TOKENS (LIGHT) --- */
 :root,
 [data-theme="light"] {
-  /* Surfaces */
-  --surface-canvas: #E8E9ED;
+  /* Surfaces — clean white canvas like Substack */
+  --surface-canvas: #FFFFFF;
   --surface-card: #FFFFFF;
-  --surface-subtle: #F5F6F8;
+  --surface-subtle: #F7F7F8;
   --surface-elevated: #FFFFFF;
 
-  /* Ink */
-  --ink-primary: #0F1115;
-  --ink-secondary: #585C65;
-  --ink-tertiary: #9AA0A6;
+  /* Ink — high contrast, comfortable reading */
+  --ink-primary: #1A1A1A;
+  --ink-secondary: #4A4A4A;
+  --ink-tertiary: #8A8A8A;
   --ink-on-accent: #FFFFFF;
 
-  /* Accent (Violet) */
+  /* Accent (Violet) — kept as brand */
   --color-accent-main: #3A2E6F;
   --color-accent-hover: #4D4085;
-  --color-accent-subtle: #EBE9F5;
-  --color-accent-muted: #D4D0EB;
+  --color-accent-subtle: #F3F1FA;
+  --color-accent-muted: #E2DEF2;
 
   /* Signals */
   --signal-error: #B3261E;
-  --signal-error-subtle: #FCEAE9;
-  --signal-warning: #E6B000;
-  --signal-warning-subtle: #FFF8E1;
+  --signal-error-subtle: #FEF3F2;
+  --signal-warning: #B8860B;
+  --signal-warning-subtle: #FFFBEB;
   --signal-success: #006E50;
-  --signal-success-subtle: #E6F5F0;
+  --signal-success-subtle: #F0FAF6;
 
-  /* Borders */
-  --border-grid: #C4C6CD;
-  --border-element: #E0E2E6;
-  --border-strong: #0F1115;
+  /* Borders — lighter, less noisy */
+  --border-grid: #E5E5E5;
+  --border-element: #EBEBEB;
+  --border-strong: #1A1A1A;
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(15, 17, 21, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
 
   color-scheme: light;
 }
@@ -96,8 +96,8 @@ body {
   background: var(--surface-canvas);
   color: var(--ink-primary);
   font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.7;
   min-height: 100vh;
   overflow-x: hidden;
 }

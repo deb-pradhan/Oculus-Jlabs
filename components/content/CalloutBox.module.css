@@ -1,37 +1,38 @@
 .callout {
-  max-width: 820px;
-  padding: 14px;
-  font-size: 12.5px;
+  max-width: 680px;
+  padding: 16px 20px;
+  font-size: 15px;
   line-height: 1.7;
   border-left: 3px solid var(--ink-primary);
+  border-radius: 0 4px 4px 0;
 }
 
 .default {
   border-left-color: var(--ink-primary);
   background: var(--surface-subtle);
-  color: var(--ink-secondary);
+  color: var(--ink-primary);
 }
 
 .red {
   border-left-color: var(--signal-error);
   background: var(--signal-error-subtle);
-  color: var(--ink-secondary);
+  color: var(--ink-primary);
 }
 
 .green {
   border-left-color: var(--signal-success);
   background: var(--signal-success-subtle);
-  color: var(--ink-secondary);
+  color: var(--ink-primary);
 }
 
 .amber {
   border-left-color: var(--signal-warning);
   background: var(--signal-warning-subtle);
-  color: var(--ink-secondary);
+  color: var(--ink-primary);
 }
 
 .blue {
   border-left-color: var(--color-accent-main);
   background: var(--color-accent-subtle);
-  color: var(--ink-secondary);
+  color: var(--ink-primary);
 }

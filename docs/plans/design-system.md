@@ -1,384 +1,227 @@
 Design System: "Technical Blueprint"
 
-Version: 1.3 (Harmonized Violet & Refined Type)
+Version: 2.0 (Readability-First Refresh)
 
 Status: Active
 
-Aesthetic Classification: Digital Industrial / High-Fidelity Wireframe / E-Ink
+Aesthetic Classification: Substack-grade readability meets digital industrial data presentation.
 
 1. Core Philosophy
 
-This system treats the User Interface as a technical schematic. It eschews modern "soft" UI trends (shadows, blurs, gradients) in favor of absolute clarity, rigid grids, and raw data presentation.
+This system prioritizes reading comfort above all else. Long-form crypto research must be effortless to consume — clean backgrounds, generous line heights, high-contrast text, and focused reading columns.
 
 The 3 Laws
 
-The Metaphor: An architectural blueprint marked up with a violet engineer's pen.
+The Metaphor: A research publication designed by a typographer, annotated by a quant.
 
-The Rule of Ink: If it doesn't convey data or structure, remove it.
+The Rule of Readability: Text must be immediately comfortable to read at any screen size. 16px minimum for body, 1.8 line height, high-contrast ink.
+
+The Rule of Focus: White canvas, minimal visual noise. Let the content breathe.
 
 The Rule of Edge: Containers are sharp (0px radius); controls are organic (999px radius).
 
 2. Color System & Harmony
 
-The palette relies on "Cool Greys" to support the Violet accent. Rather than dead achromatic greys, the surfaces utilize low-saturation blue-greys to create a cohesive, atmospheric temperature that harmonizes with the accent.
+2.1 Light Theme (Default)
 
-2.1 Accent Token (The "Live Wire")
+The light theme uses a clean white canvas — no gray backgrounds. This is the Substack approach: pure white reading surface with high-contrast text.
 
-The accent color is treated as a highlighter pen. It indicates active energy, critical data, or primary interactivity.
+2.1.1 Surface Tokens
 
-Token
+Token | Hex | Role
+surface-canvas | #FFFFFF | Global background (pure white)
+surface-card | #FFFFFF | Card background (same as canvas for seamless reading)
+surface-subtle | #F7F7F8 | Table headers, code blocks, subtle differentiation
+surface-elevated | #FFFFFF | Modals, popovers
 
-Hex
+2.1.2 Ink Tokens
 
-Role
+Token | Hex | Contrast on White | Role
+ink-primary | #1A1A1A | 15.4:1 | Headlines, body text (near-black for max readability)
+ink-secondary | #4A4A4A | 9.7:1 | Descriptions, secondary text (comfortably readable)
+ink-tertiary | #8A8A8A | 3.9:1 | Labels, timestamps, metadata (passes AA for large text)
+ink-on-accent | #FFFFFF | — | Text on accent backgrounds
 
-color-accent-main
+2.1.3 Accent Tokens (Violet — Brand)
 
-#3A2E6F
+Token | Hex | Role
+color-accent-main | #3A2E6F | Primary actions, links, badges
+color-accent-hover | #4D4085 | Hover state
+color-accent-subtle | #F3F1FA | Faint accent wash backgrounds
+color-accent-muted | #E2DEF2 | Accent borders, selected states
 
-Primary Actions, Active States, Crosshairs
+2.1.4 Signal Tokens
 
-color-accent-hover
+Token | Hex | Subtle Bg | Role
+signal-error | #B3261E | #FEF3F2 | Critical / bearish
+signal-warning | #B8860B | #FFFBEB | Attention / neutral
+signal-success | #006E50 | #F0FAF6 | Operational / bullish
 
-#4D4085
+2.1.5 Border Tokens
 
-Hover states for primary actions
+Token | Hex | Role
+border-grid | #E5E5E5 | Structural dividers
+border-element | #EBEBEB | Subtle borders (barely visible on white)
+border-strong | #1A1A1A | Emphatic borders
 
-color-accent-subtle
+2.2 Dark Theme
 
-#EBE9F5
+Token | Hex | Role
+surface-canvas | #0C0D10 | Global background
+surface-card | #16171C | Card background
+surface-subtle | #1E1F26 | Internal segmentation
+surface-elevated | #22232A | Popovers
 
-Very faint accent wash (rarely used)
+ink-primary | #E8E9ED | Headlines, body text
+ink-secondary | #9AA0A6 | Secondary text
+ink-tertiary | #585C65 | Metadata, labels
 
-2.2 Surface Tokens (Harmonized Cool Greys)
+color-accent-main | #7B6FBF | Primary actions (lighter violet for dark bg)
+color-accent-hover | #9589D4 | Hover state
+color-accent-subtle | #1E1A33 | Accent wash
+color-accent-muted | #2E2850 | Accent borders
 
-Theory: We use "Slate" tones instead of pure grey to reduce visual vibration against the violet.
+3. Typography (Readability-First)
 
-Token
+The type system prioritizes comfortable long-form reading. Body text is 16px — the same as Substack, Medium, and every top-tier reading platform.
 
-Hex
+Primary Font: Geist Sans (clean, neutral, excellent x-height).
+Data Font: Geist Mono (humanist monospace for tables/data).
 
-Role
+3.1 Type Scale
 
-surface-canvas
-
-#E8E9ED
-
-Global background (Cool Concrete)
-
-surface-card
-
-#FFFFFF
-
-Primary container background
-
-surface-subtle
-
-#F5F6F8
-
-Internal segmentation
-
-2.3 Ink Tokens (Text & Icons)
-
-Token
-
-Hex
-
-Role
-
-ink-primary
-
-#0F1115
-
-Headlines (Off-black for less harshness)
-
-ink-secondary
-
-#585C65
-
-Labels, body text (Cool Grey)
-
-ink-tertiary
-
-#9AA0A6
-
-Placeholders, disabled states
-
-ink-on-accent
-
-#FFFFFF
-
-Text inside primary buttons
-
-2.4 Border Tokens
-
-Token
-
-Hex
-
-Role
-
-border-grid
-
-#C4C6CD
-
-Structural lines (Cool Grey)
-
-border-element
-
-#E0E2E6
-
-Subtle borders within a card
-
-2.5 Functional Signals (Semantic)
-
-Theory: High-visibility colors selected to maintain temperature consistency or deliberate contrast with the Violet accent.
-
-Token
-
-Hex
-
-Role
-
-Relation to Accent
-
-signal-error
-
-#B3261E
-
-Critical Failure
-
-Split-Complementary (High Tension)
-
-signal-warning
-
-#E6B000
-
-Attention Needed
-
-Complementary (Max Contrast)
-
-signal-success
-
-#006E50
-
-Operational
-
-Analogous Cool (Harmonious)
-
-3. Typography (Modern Minimalist Refinement)
-
-Typography drives the elegance of the system. We use a Neo-Grotesque approach: tighter headlines, wide micro-labels, and a dedicated mono font for data density.
-
-Primary Font: Geist Sans, Inter, or Suisse Int'l. (Rational, clean, neutral).
-Data Font: JetBrains Mono or Geist Mono. (Humanist monospace).
-
-3.1 Type Scale & Dynamics
-
-Refinement Note: We avoid heavy weights (Bold/Black). Hierarchy is achieved through size and casing, not thickness.
-
-Role
-
-Weight
-
-Size
-
-Line Height
-
-Tracking
-
-Case
-
-Display XL
-
-Light (300)
-
-48px
-
-1.0 (Tight)
-
--2.5%
-
-Sentence
-
-H1 Title
-
-Regular (400)
-
-24px
-
-1.2
-
--1.0%
-
-Sentence
-
-H2 Subhead
-
-Regular (400)
-
-16px
-
-1.4
-
--0.5%
-
-Sentence
-
-Body Reading
-
-Regular (400)
-
-14px
-
-1.5
-
-0%
-
-Sentence
-
-Label/Micro
-
-Medium (500)
-
-11px
-
-1.0
-
-6%
-
-UPPERCASE
-
-Data Numerical
-
-Regular (400)
-
-13px
-
-1.4
-
-0%
-
-Tabular Nums
+Role | Weight | Size | Line Height | Tracking | Case
+Display XL | Light (300) | 48px | 1.0 | -2.5% | Sentence
+H1 Title | Bold (700) | 28–36px | 1.15 | -3% | Sentence
+H2 Section | Bold (700) | 18px | 1.3 | -1% | Sentence
+Body Reading | Regular (400) | 16px | 1.8 | 0% | Sentence
+Body Secondary | Regular (400) | 15px | 1.7 | 0% | Sentence
+Callout | Regular (400) | 15px | 1.7 | 0% | Sentence
+Label/Micro | SemiBold (600) | 11px | 1.0 | 6–10% | UPPERCASE
+Data Mono | Regular (400) | 14px | 1.4 | 0% | Tabular Nums
 
 3.2 Typographic Rules
 
-Tabular Figures: All numbers in data tables or dashboards must use font-variant-numeric: tabular-nums to ensure vertical alignment.
+- Body text uses --ink-primary (#1A1A1A in light), never --ink-secondary.
+- Max reading width: 680px for prose, 820px for data.
+- Paragraph spacing: 1.25em between paragraphs.
+- Tabular Figures: All numbers in data tables use font-variant-numeric: tabular-nums.
 
-Optical Alignment: For Display XL, allow characters to hang slightly into the margin if possible for optical straightness.
+4. Layout
 
-No Italics: This system does not use italics. If emphasis is needed, use color (color-accent-main).
+4.1 Reading Column
 
-4. Grid Architecture (The "Bento" Logic)
+The blog uses a focused single-column reading layout (max-width: 680px for prose) with an optional sticky sidebar for table of contents on desktop (width: 220px).
 
-The layout uses a visible modular grid.
+4.2 Homepage Feed
 
-Gap: 0px. No transparency between cards.
+Stacked post feed with:
+- Latest post gets accent left-border treatment
+- Category pills with filter functionality
+- Search bar at top
+- Max content width: 1200px
 
-Separation: Cards are separated by 1px solid lines (border-grid).
+4.3 Spacing
 
-
-Symbol: Small filled circle (2-3px) or intersecting lines without the crossbar
-
-Color: color-accent-main (#3A2E6F)
-
-Position: Absolute, overlapping the border intersection.
+- Section gaps in blog: 12px margin-bottom on section headers
+- Paragraph spacing: 1.25em
+- Callout padding: 16px 20px
+- Card padding: 14px 16px
 
 5. Component Library
 
-5.1 Containers (Cards)
+5.1 Containers
 
-Shape: Strictly Rectangular.
+Shape: Rectangular, border-radius: 0px.
+Background: --surface-card (white in light theme — seamless with canvas).
+Border: 1px --border-element.
 
-Border Radius: 0px.
+5.2 Callout Boxes
 
-Shadows: None.
+Left border: 3px colored by variant (error/success/warning/accent).
+Background: variant-subtle color.
+Text: --ink-primary (not secondary — callouts must be readable).
+Font size: 15px, line-height: 1.7.
 
-Stroke: 1px border-grid outline.
+5.3 Buttons & Controls
 
-Header: Title (Top Left) and Directional Icon (Top Right, in Accent Color).
+Primary: Solid --color-accent-main background, white text.
+Secondary: Transparent, 1px --color-accent-main border.
+Shape: border-radius: 999px (pill).
 
-5.2 Buttons & Controls
+5.4 Data Tables
 
-Controls serve as the organic contrast to the rigid grid.
+Header: --surface-subtle background, 11px uppercase labels in --ink-secondary.
+Cells: 14px monospace, --ink-primary text, 10-14px padding.
+Borders: 1px --border-element between rows, 2px --border-strong under header.
 
-Shape: Full Pill (Capsule). border-radius: 999px.
+5.5 Stat Grids
 
-Primary Action: Solid #3A2E6F background, White text.
+1px gap grid with --border-element separator.
+Values: 18px bold monospace.
+Labels: 10px uppercase --ink-tertiary.
 
-Secondary Action: Transparent background, 1px #3A2E6F border, #3A2E6F text.
+6. Header
 
-Toggles: High contrast. #3A2E6F circle thumb on a #E8E9ED track.
+Sticky, 56px height.
+Light theme: white background with blur (rgba(255,255,255,0.95)).
+Dark theme: near-black with blur (rgba(12,13,16,0.92)).
+Logo: theme-aware (dark wordmark on light, light wordmark on dark).
 
-5.3 Iconography
+7. Developer Handoff (CSS Variables)
 
-Style: Linear / Stroke-based.
+:root, [data-theme="light"] {
+  --surface-canvas: #FFFFFF;
+  --surface-card: #FFFFFF;
+  --surface-subtle: #F7F7F8;
+  --surface-elevated: #FFFFFF;
 
-Stroke Width: 1.5px (Uniform).
-
-Active State: Rendered in Accent Color.
-
-6. Data Visualization
-
-Data should feel like it is drawn with a plotter pen.
-
-Charts: 1px stroke weight.
-
-Active Data Line: Rendered in Accent #3A2E6F.
-
-Context Lines: Rendered in ink-secondary (#585C65).
-
-Fills: No solid fills. Use vertical hatching or dithering.
-
-7. Imagery & Texture
-
-The "Dither" Mandate: Photographic or 3D content must never be rendered in full gradients. It must be processed to look like 1-bit or grayscale print.
-
-Standard: Grayscale Dither (Black dots on White).
-
-Featured/Active: Duotone Dithering (Violet #3A2E6F dots on White).
-
-Perspective: Isometric or Orthographic preferred.
-
-8. Developer Handoff (CSS Variables)
-
-:root {
-  /* Surface (Cool Greys) */
-  --surface-canvas: #E8E9ED;
-  --surface-card:   #FFFFFF;
-  --surface-subtle: #F5F6F8;
-
-  /* Ink (Cool Tones) */
-  --ink-primary:   #0F1115;
-  --ink-secondary: #585C65;
-  --ink-tertiary:  #9AA0A6;
+  --ink-primary: #1A1A1A;
+  --ink-secondary: #4A4A4A;
+  --ink-tertiary: #8A8A8A;
   --ink-on-accent: #FFFFFF;
 
-  /* Accent (Violet) */
-  --color-accent-main:   #3A2E6F;
-  --color-accent-hover:  #4D4085;
-  --color-accent-subtle: #EBE9F5;
+  --color-accent-main: #3A2E6F;
+  --color-accent-hover: #4D4085;
+  --color-accent-subtle: #F3F1FA;
+  --color-accent-muted: #E2DEF2;
 
-  /* Functional Signals */
-  --signal-error:   #B3261E;
-  --signal-warning: #E6B000;
+  --signal-error: #B3261E;
+  --signal-error-subtle: #FEF3F2;
+  --signal-warning: #B8860B;
+  --signal-warning-subtle: #FFFBEB;
   --signal-success: #006E50;
+  --signal-success-subtle: #F0FAF6;
 
-  /* Borders */
-  --border-grid:    #C4C6CD;
-  --border-element: #E0E2E6;
-  --border-accent:  #3A2E6F;
-  
-  /* Typography Stack */
-  --font-sans: 'Geist Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
+  --border-grid: #E5E5E5;
+  --border-element: #EBEBEB;
+  --border-strong: #1A1A1A;
 }
 
-/* Utility Class: Grid Intersections */
-.grid-cell {
-  position: relative;
-  background: var(--surface-card);
-  border: 1px solid var(--border-grid);
+[data-theme="dark"] {
+  --surface-canvas: #0C0D10;
+  --surface-card: #16171C;
+  --surface-subtle: #1E1F26;
+  --surface-elevated: #22232A;
+
+  --ink-primary: #E8E9ED;
+  --ink-secondary: #9AA0A6;
+  --ink-tertiary: #585C65;
+  --ink-on-accent: #FFFFFF;
+
+  --color-accent-main: #7B6FBF;
+  --color-accent-hover: #9589D4;
+  --color-accent-subtle: #1E1A33;
+  --color-accent-muted: #2E2850;
+
+  --signal-error: #F2726A;
+  --signal-error-subtle: #2A1615;
+  --signal-warning: #F5CE5C;
+  --signal-warning-subtle: #2A2410;
+  --signal-success: #4FD1A5;
+  --signal-success-subtle: #0F2A22;
+
+  --border-grid: #2A2B33;
+  --border-element: #22232A;
+  --border-strong: #E8E9ED;
 }
-
-

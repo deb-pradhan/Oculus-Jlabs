@@ -1,12 +1,12 @@
 .prose {
-  max-width: 800px;
-  font-size: 13px;
-  line-height: 1.85;
-  color: var(--ink-secondary);
+  max-width: 680px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--ink-primary);
 }
 
 .prose p {
-  margin-bottom: 1em;
+  margin-bottom: 1.25em;
 }
 
 .prose p:last-child {
@@ -19,14 +19,15 @@
 }
 
 .prose em {
-  color: var(--ink-tertiary);
+  color: var(--ink-secondary);
   font-style: italic;
 }
 
 .prose a {
   color: var(--color-accent-main);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
 }
 
 .prose a:hover {

@@ -27,6 +27,7 @@ const CATEGORY_KEYWORDS: Record<string, string> = {
   macro: "global economy finance markets",
   derivatives: "trading floor wall street",
   signals: "data analytics technology abstract",
+  robotics: "robotics automation humanoid robot technology",
 };
 
 /** Simple string hash to get a deterministic number from a slug */

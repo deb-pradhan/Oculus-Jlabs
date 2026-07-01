@@ -17,7 +17,8 @@ export type BlogCategory =
   | "onchain"
   | "macro"
   | "derivatives"
-  | "signals";
+  | "signals"
+  | "robotics";
 
 export const BLOG_CATEGORIES: BlogCategory[] = [
   "options",
@@ -26,6 +27,7 @@ export const BLOG_CATEGORIES: BlogCategory[] = [
   "macro",
   "derivatives",
   "signals",
+  "robotics",
 ];
 
 /** Post with engagement counters (returned by API) */
